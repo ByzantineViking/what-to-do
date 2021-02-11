@@ -1,0 +1,106 @@
+@function color($color,$tone) {
+  @warn map-get($palettes,$color);
+
+  @if map-has-key($palettes,$color) {
+    $color: map-get($palettes, $color);
+
+    @if map-has-key($color,$tone) {
+      $tone: map-get($color, $tone);
+
+      @return $tone;
+    }
+
+    @warn "unknown tone `#{$tone}` in color";
+
+    @return null;
+  }
+
+  @warn "unknown color `#{$color}` in palette";
+
+  @return null;
+}
+
+$palettes: (
+  structural: (
+    700: #2e3532,
+    300: #d2d4c8,
+    200: #e0e2db,
+    100: #f3f3f3,
+  ),
+  primary: (
+    700: #8b2635,
+  ),
+  accent: (
+    300: #d3efbd
+  ),
+);
+
+%flex {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flexColumn {
+  @extend %flex;
+
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@mixin flexCenter {
+  @extend %flex;
+
+  justify-content: center;
+}
+
+@mixin mq($size) {
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: color(structural, 100);
+  color: color(structural, 700);
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+}
+
+main {
+  @include flexColumn;
+
+  min-height: calc(100vh - 60px);
+}
+
+footer {
+  @include flexCenter;
+
+  width: 100%;
+  height: 60px;
+
+  p {
+    color: color(structural, 200);
+    font-size: 0.5rem;
+
+    @include mq(768px) {
+      font-size: 1rem;
+    }
+
+    a {
+      color: color(accebt, 300);
+    }
+  }
+}
+
+img {
+  display: block;
+}

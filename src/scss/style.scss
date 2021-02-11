@@ -1,0 +1,106 @@
+@import "_base";
+@import "_sharedClasses";
+
+.add {
+  width: 90%;
+  display: flex;
+  border: 2px solid color(structural, 700);
+  border-radius: 4px;
+
+  @include mq(768px) {
+    width: 80vw;
+    padding: 1.25rem 1.25rem;
+  }
+
+  @include mq(1025px) {
+    width: 60vw;
+  }
+
+  input[type="text"] {
+    flex-grow: 1;
+    font-size: 0.75rem;
+    text-align: left;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    min-width: 150px;
+
+    @include mq(768px) {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.add:focus-within {
+  box-shadow: 0 2px 5px 2px color(structural, 200);
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  min-width: 48px;
+  min-height: 48px;
+  outline: none;
+
+  i {
+    font-size: 1rem;
+
+    @include mq(768px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+button:hover,
+button:focus {
+  i {
+    color: green;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+  }
+}
+
+.main {
+  @include flexColumn;
+}
+
+.header {
+  margin-bottom: 16px;
+  padding: 32px 0;
+
+  @include flexCenter;
+}
+
+#todo-list {
+  margin-top: 16px;
+
+  > li {
+    > h2 {
+      margin-bottom: 16px;
+    }
+
+    > ol > li > a {
+      color: cadetblue;
+      margin-bottom: 4px;
+    }
+
+    > ol > li > a:visited {
+      color: dimgrey;
+      margin-bottom: 4px;
+    }
+
+    > ol > li {
+      margin-bottom: 8px;
+    }
+
+    @include mq(768px) {
+      width: 80vw;
+      padding: 1.25rem 1.25rem;
+    }
+
+    @include mq(1025px) {
+      width: 60vw;
+    }
+  }
+}
